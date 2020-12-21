@@ -56,3 +56,6 @@ settings.json
 #Project Specific
 sendtoserver
 notes.md
+main.py
+server.py
+client.py
