@@ -1,30 +1,30 @@
-import socket
-import errno
+import socket, errno, threading
 from socket import error as socket_error
 
 def client(username):
-    s = socket.socket()
-    host = input("Enter an IP Address:\n>>>")
-    print(host)
-    port = 12345
-    s.settimeout(5)
+    # s = socket.socket()
+    # host = input("Enter an IP Address:\n>>>")
+    # print(host)
+    # port = 12345
+    # s.settimeout(5)
     
-    try:
-        s.connect((host, port))
-    except socket_error as serr:
-        if serr.errno == errno.ECONNREFUSED:
-            print("Connection Refused")
-        elif serr.errno == errno.EHOSTUNREACH:
-            print("No Route to Host")
-    except socket.timeout:
-        print("Connection Timed Out")
+    # try:
+    #     s.connect((host, port))
+    # except socket_error as serr:
+    #     if serr.errno == errno.ECONNREFUSED:
+    #         print("Connection Refused")
+    #     elif serr.errno == errno.EHOSTUNREACH:
+    #         print("No Route to Host")
+    # except socket.timeout:
+    #     print("Connection Timed Out")
         
-    s.send(b'username')
-    print(s.recv(1024))
+    # s.send(b'username')
+    # print(s.recv(1024)).decode()
 
     while True:
         msg = input(">>> ")
         if msg == "stop":
+            s.send(b'stop')
             break
         else:
             s.send(b'msg')

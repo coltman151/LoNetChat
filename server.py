@@ -1,4 +1,4 @@
-import socket
+import socket, sys
 
 def server(username):
     s = socket.socket()
@@ -6,13 +6,14 @@ def server(username):
     s.bind(('', port))
 
     s.listen(5)
-    while True:
-        c, addr = s.accept()
-        print('Got connection from', addr)
-        c.send(b'thank you for connectiong')
-        msg = c.recv(1024)
-        print(msg)
-        if msg == "stop":
-            break
+    c, addr = s.accept()
+    print('Got connection from', addr)
+    c.send(b'thank you for connectiong')
+    
+    # while True:
+    #     msg = c.recv(1024).decode()
+    #     print(msg)
+    #     if msg == "stop":
+    #         sys.exit()
         
 server("test")
